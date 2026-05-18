@@ -113,46 +113,42 @@ class LinkedList:
             current = current.next
         return right_half
 
-    def merge_sort(self, linked_list):
+    def sort(self, linked_list):
         if linked_list.size <= 1:
             return linked_list
 
         mid = linked_list.size // 2
         left_half = linked_list.get_left_half(linked_list, mid)
         #print("Left:")
-        left_half.print_list()
+        #left_half.print_list()
         right_half = linked_list.get_right_half(linked_list, mid)
         #print("Right:")
-        right_half.print_list()
+        #right_half.print_list()
 
-        return self.merge(self.merge_sort(left_half), self.merge_sort(right_half))
+        return self.merge(self.sort(left_half), self.sort(right_half))
 
     def merge(self, left, right):
         merged = LinkedList()
-        left_index = 0
-        right_index = 0
+
         left_elem = left.head
         right_elem = right.head
 
-        while left_index < left.size and right_index < right.size:
+        while left_elem is not None and right_elem is not None:
             if left_elem <= right_elem:
                 merged.insert_at_end(left_elem.data)
                 left_elem = left_elem.next
-                left_index += 1
             else:
                 merged.insert_at_end(right_elem.data)
                 right_elem = right_elem.next
-                right_index += 1
 
-        while left_index < left.size:
+        while left_elem is not None:
             merged.insert_at_end(left_elem.data)
             left_elem = left_elem.next
-            left_index += 1
 
-        while right_index < right.size:
+        while right_elem is not None:
             merged.insert_at_end(right_elem.data)
             right_elem = right_elem.next
-            right_index += 1
+
 
         return merged
 
@@ -170,11 +166,11 @@ llist.insert_at_beginning(4)
 print("Before rev:")
 llist.print_list()
 
-#llist.reverse_list()
+llist.reverse_list()
 
-#print("After rev:")
-#llist.print_list()
+print("After rev:")
+llist.print_list()
 
-
-list1 = llist.merge_sort(llist)
-list1.print_list()
+print("After sort:")
+sorted_list = llist.sort(llist)
+sorted_list.print_list()
