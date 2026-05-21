@@ -14,7 +14,7 @@ class Node:
         self.id = str(uuid.uuid4())	# Унікальний ідентифікатор для кожного вузла
 
     def __lt__(self, other):
-        return self.val > other.val
+        return self.val > other.val #TODO implemented max heap. reverse sign to make min
 
 class Heap:
     def __init__(self):

@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from enum import Enum
 from collections import deque
 
-COLOR_MIXIN = (30,30,20)
+COLOR_MIXIN = (30,30,20) #todo - need mixin calculation, constants can make overflow
 START_COLOR = '#191d95'
 
 class MixMode(Enum):
@@ -24,7 +24,7 @@ class Node:
 
 def add_edges(graph, node, pos, x=0, y=0, layer=1):
     if node is not None:
-        graph.add_node(node.id, color=node.color, label=node.val)	# Використання id та збереження значення вузла
+        graph.add_node(node.id, color=node.color, label=node.val)
         if node.left:
             graph.add_edge(node.id, node.left.id)
             l = x - 1 / 2 ** layer

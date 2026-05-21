@@ -17,7 +17,7 @@ def dijkstra_orig(graph, start):
         if current_distance > distances[current_vertex]:
             continue
 
-        for neighbor, weight in vertices[current_vertex].food_items():
+        for neighbor, weight in vertices[current_vertex].items():
             distance = current_distance + weight
             if distance < distances[neighbor]:
                 distances[neighbor] = distance
@@ -38,7 +38,7 @@ def dijkstra(graph: Graph, start):
         if current_distance > distances[current_vertex]:
             continue
 
-        for neighbor, weight in unvisited[current_vertex].food_items():
+        for neighbor, weight in unvisited[current_vertex].items():
             distance = current_distance + weight
             if distance < distances[neighbor]:
                 distances[neighbor] = distance

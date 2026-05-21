@@ -10,7 +10,16 @@ food_items = {
 	"potato": {"cost": 25, "calories": 350}
 }
 
-BUDGET: Final = 100
+BUDGET: Final = 110
+
+def print_pretty_results(starting_budget: int, algo_name: str, results: dict):
+    total_cost = 0
+    total_calories = 0
+    for key, value in results.items():
+        total_cost += value["cost"]
+        total_calories += value["calories"]
+    print(f"{algo_name} choose: {','.join(results.keys())}")
+    print(f"Total cost: {total_cost}, total calories: {total_calories}")
 
 def greedy_algorithm(budget: int, items: dict) -> dict[int, int]:
     ratio_list = []
@@ -70,8 +79,8 @@ def dynamic_programming(budget: int, items: dict):
 
 
 def main():
-    print(greedy_algorithm(BUDGET, food_items))
-    print(dynamic_programming(BUDGET, food_items))
+    print_pretty_results(BUDGET, "Greedy", greedy_algorithm(BUDGET, food_items))
+    print_pretty_results(BUDGET, "Dynamic", dynamic_programming(BUDGET, food_items))
 
 
 

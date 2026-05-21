@@ -14,8 +14,8 @@ def process_results(abs_values_dict, num_iterations):
 
 def print_results_table(results_dict):
     table = Table(title="Results")
-    table.add_column("value", justify="center")
-    table.add_column("precent_chance", justify="center")
+    table.add_column("Sum", justify="center")
+    table.add_column("Precent Chance", justify="center")
 
     for key, value in sorted(results_dict.items()):
         table.add_row(str(key), f"{value:.2f}")
