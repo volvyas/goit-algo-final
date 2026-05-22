@@ -125,16 +125,20 @@ class LinkedList:
         #print("Right:")
         #right_half.print_list()
 
-        return self.merge(self.sort(left_half), self.sort(right_half))
+        return self.merge_sorted_lists(self.sort(left_half), self.sort(right_half))
 
     def merge(self, left, right):
+        return self.merge_sorted_lists(left, right)
+
+    @staticmethod
+    def merge_sorted_lists(list1, list2):
         merged = LinkedList()
 
-        left_elem = left.head
-        right_elem = right.head
+        left_elem = list1.head
+        right_elem = list2.head
 
         while left_elem is not None and right_elem is not None:
-            if left_elem <= right_elem:
+            if left_elem.data <= right_elem.data:
                 merged.insert_at_end(left_elem.data)
                 left_elem = left_elem.next
             else:
@@ -151,7 +155,6 @@ class LinkedList:
 
 
         return merged
-
 
 llist = LinkedList()
 
@@ -174,3 +177,11 @@ llist.print_list()
 print("After sort:")
 sorted_list = llist.sort(llist)
 sorted_list.print_list()
+
+llist2 = LinkedList()
+llist2.insert_at_end(9)
+llist2.insert_at_end(10)
+llist2.insert_at_end(11)
+
+print("After merge:")
+llist.merge_sorted_lists(sorted_list, llist2).print_list()
